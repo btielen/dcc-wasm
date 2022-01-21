@@ -1,6 +1,5 @@
-use wasm_bindgen::JsValue;
 use wasm_bindgen::prelude::wasm_bindgen;
-
+use wasm_bindgen::JsValue;
 
 ///
 /// The parsing result
@@ -10,7 +9,7 @@ use wasm_bindgen::prelude::wasm_bindgen;
 pub struct ParsingResult {
     pub successful: bool,
     pub error: String,
-    pub data: JsValue
+    pub data: JsValue,
 }
 
 impl ParsingResult {
@@ -21,10 +20,9 @@ impl ParsingResult {
         ParsingResult {
             successful: true,
             error: String::from(""),
-            data
+            data,
         }
     }
-
 
     ///
     /// Create a invalid ParsingResult
@@ -33,7 +31,7 @@ impl ParsingResult {
         ParsingResult {
             successful: false,
             error: error.to_string(),
-            data: JsValue::UNDEFINED
+            data: JsValue::UNDEFINED,
         }
     }
 
@@ -58,7 +56,7 @@ impl Default for ParsingResult {
         ParsingResult {
             successful: false,
             error: String::from(""),
-            data: JsValue::UNDEFINED
+            data: JsValue::UNDEFINED,
         }
     }
 }
