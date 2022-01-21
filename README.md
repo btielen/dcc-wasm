@@ -1,5 +1,9 @@
 # Parse a digital covid certificate
 
+![types](https://img.shields.io/npm/types/dcc-wasm)
+![version](https://img.shields.io/npm/v/dcc-wasm)
+![licence](https://img.shields.io/npm/l/dcc-wasm)
+
 This is a WebAssembly (wasm) package to parse a European Digital Covid Certificate (DCC). The
 source is written in Rust, compiled to webassembly. **Be careful!** Signatures are not being verified.
 
@@ -13,7 +17,7 @@ Use your favourite package manager to use this package in your javascript projec
 
 Add the following to `webpack.config.js`
 
-```js
+```
 {
   module: {
     rules: [
