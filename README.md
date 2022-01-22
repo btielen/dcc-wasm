@@ -36,7 +36,7 @@ Add the following to `webpack.config.js`
 
 ## Getting started
 
-Here is an example on how use this package
+Here is an [example](https://runkit.com/embed/cfztjsur5pe2) on how use this package
 
 ```js
 import { parse } from "dcc-wasm"
@@ -103,7 +103,7 @@ The specifications of this data can be found [here](https://github.com/ehn-dcc-d
 ### Javascript
 
 Follow these steps from the root dir to run the javascript tests
-- `wasm-pack build --target nodejs` to build
-- change directory to tests `cd tests`
+- `wasm-pack build --target nodejs --outdir package/node` to build
+- change directory to package `cd package`
 - `npm install`
 - `npm run test` to run the tests

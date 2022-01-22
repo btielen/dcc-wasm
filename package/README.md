@@ -1,6 +1,10 @@
 # Parse a digital covid certificate
 
-This is a WebAssembly (wasm) package to parse a European Digital Covid Certificate (DCC). The 
+![types](https://img.shields.io/npm/types/dcc-wasm)
+![version](https://img.shields.io/npm/v/dcc-wasm)
+![licence](https://img.shields.io/npm/l/dcc-wasm)
+
+This is a WebAssembly (wasm) package to parse a European Digital Covid Certificate (DCC). The
 source is written in Rust, compiled to webassembly. **Be careful!** Signatures are not being verified.
 
 ## Installation
@@ -13,7 +17,7 @@ Use your favourite package manager to use this package in your javascript projec
 
 Add the following to `webpack.config.js`
 
-```js
+```
 {
   module: {
     rules: [
@@ -32,7 +36,7 @@ Add the following to `webpack.config.js`
 
 ## Getting started
 
-Here is an example on how use this package
+Here is an [example](https://runkit.com/embed/cfztjsur5pe2) on how use this package
 
 ```js
 import { parse } from "dcc-wasm"
@@ -83,9 +87,9 @@ The specifications of this data can be found [here](https://github.com/ehn-dcc-d
 
 ## Building from source
 1. Clone repository
-2. Install `wasm-pack` by running 
-`curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh`
-in your terminal
+2. Install `wasm-pack` by running
+   `curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh`
+   in your terminal
 3. Run `wasm-pack build --target nodejs --outdir package/node` to build the wasm package for a nodejs environment
 4. Run `wasm-pack build --outdir package/webpack` to build the wasm package a browser package
 
@@ -99,7 +103,7 @@ in your terminal
 ### Javascript
 
 Follow these steps from the root dir to run the javascript tests
-- `wasm-pack build --target nodejs` to build
-- change directory to tests `cd tests`
+- `wasm-pack build --target nodejs --outdir package/node` to build
+- change directory to package `cd package`
 - `npm install`
 - `npm run test` to run the tests
