@@ -5,7 +5,7 @@
 ![licence](https://img.shields.io/npm/l/dcc-wasm)
 
 This is a WebAssembly (wasm) package to parse a European Digital Covid Certificate (DCC). The
-source is written in Rust, compiled to webassembly. **Be careful!** Signatures are not being verified.
+source is written in Rust, compiled to webassembly. Signatures are also being verified.
 
 ## Installation
 
@@ -36,7 +36,7 @@ Add the following to `webpack.config.js`
 
 ## Getting started
 
-Here is an [example](https://runkit.com/embed/cfztjsur5pe2) on how use this package
+Here is an [example](https://runkit.com/embed/x23oumhrlx59) on how use this package
 
 ```js
 import { parse } from "dcc-wasm"

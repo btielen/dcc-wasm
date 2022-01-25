@@ -5,7 +5,7 @@
 ![licence](https://img.shields.io/npm/l/dcc-wasm)
 
 This is a WebAssembly (wasm) package to parse a European Digital Covid Certificate (DCC). The
-source is written in Rust, compiled to webassembly. **Be careful!** Signatures are not being verified.
+source is written in Rust, compiled to webassembly. Signatures are also being verified.
 
 ## Installation
 
@@ -43,7 +43,7 @@ import { parse } from "dcc-wasm"
 
 const parseResult = parse("HC1:6BFOXN*TS0BI$ZD-PHQ7I9AD66V5B22CH9M9ESI9XBHXK-%69LQOGI.*V76GCV4*XUA2P-FHT-HNTI4L6N$Q%UG/YL WO*Z7ON15 BM0VM.JQ$F4W17PG4.VAS5EG4V*BRL0K-RDY5RWOOH6PO9:TUQJAJG9-*NIRICVELZUZM9EN9-O9:PICIG805CZKHKB-43.E3KD3OAJ6*K6ZCY73JC3KD3ZQTWD3E.KLC8M3LP-89B9K+KB2KK3M*EDZI9$JAQJKKIJX2MM+GWHKSKE MCAOI8%MCU5VTQDPIMQK9*O7%NC.UTWA6QK.-T3-SY$NCU5CIQ 52744E09TBOC.UKMI$8R+1A7CPFRMLNKNM8JI0JPGN:0K7OOBRLY667SYHJL9B7VPO:SWLH1/S4KQQK0$5REQT5RN1FR%SHPLRKWJO8LQ84EBC$-P4A0V1BBR5XWB3OCGEK:$8HHOLQOZUJ*30Q8CD1");
 
-if(!parseResult.successful) {
+if(!parseResult.successful || !parseResult.signature_valid) {
   console.log(parseResult.error)
 }
 
@@ -84,6 +84,16 @@ Would result in:
 ```
 
 The specifications of this data can be found [here](https://github.com/ehn-dcc-development/hcert-spec/blob/main/hcert_spec.md)
+
+## ParsingResult
+
+| Property        | Type    | Description                                           |
+|-----------------|---------|-------------------------------------------------------|
+| successful      | bool    | Will be true if the data could be parsed successfully |
+| signature_valid | bool    | Will be true if the signature could be verifyed       |
+| kid             | string  | Issuer identifier                                     |
+| algorithm       | number  | The algorithm to sign the data                        |
+| data            | unknown | The data in the health certificate                    |
 
 ## Building from source
 1. Clone repository
