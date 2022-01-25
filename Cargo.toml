@@ -1,6 +1,6 @@
 [package]
 name = "dcc-wasm"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Benno Tielen <Benno@tielen.nl>"]
 edition = "2018"
 description = "Parse Digital Covid Certificates with Webassembly"
