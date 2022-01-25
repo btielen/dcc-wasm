@@ -15,32 +15,32 @@ const TEST_DCC: &str = "6BFOXN*TS0BI$ZD-PHQ7I9AD66V5B22CH9M9ESI9XBHXK-%69LQOGI.*
 #[wasm_bindgen_test]
 fn it_is_an_object() {
     let result = parse(TEST_DCC);
-    assert_eq!(result.data().is_object(), true);
+    assert_eq!(result.data.is_object(), true);
 }
 
 #[wasm_bindgen_test]
 fn it_contains_props() {
     let result = parse(TEST_DCC);
-    let json: Value = result.data().into_serde().unwrap();
+    let json: Value = result.data.into_serde().unwrap();
     assert_eq!(json["1"], String::from("DE"))
 }
 
 #[wasm_bindgen_test]
 fn it_is_valid() {
-    assert_eq!(parse(TEST_DCC).is_successful(), true)
+    assert_eq!(parse(TEST_DCC).successful, true)
 }
 
 #[wasm_bindgen_test]
 fn invalid_dcc_returns_false() {
-    assert_eq!(parse("some_invalid_data").is_successful(), false)
+    assert_eq!(parse("some_invalid_data").successful, false)
 }
 
 #[wasm_bindgen_test]
 fn invalid_dcc_returns_error_msg() {
-    assert!(parse("some_invalid_data").error().len() > 0)
+    assert!(parse("some_invalid_data").error.len() > 0)
 }
 
 #[wasm_bindgen_test]
 fn it_ignores_the_header() {
-    assert!(parse(&format!("HC1:{}", TEST_DCC)).is_successful())
+    assert!(parse(&format!("HC1:{}", TEST_DCC)).successful)
 }
