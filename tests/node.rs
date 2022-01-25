@@ -4,7 +4,7 @@
 
 extern crate wasm_bindgen_test;
 
-use dcc_wasm::{parse, verify_signature};
+use dcc_wasm::parse;
 use serde_json::Value;
 use wasm_bindgen_test::*;
 
@@ -13,40 +13,38 @@ const TEST_DCC: &str = "6BFOXN*TS0BI$ZD-PHQ7I9AD66V5B22CH9M9ESI9XBHXK-%69LQOGI.*
 #[wasm_bindgen_test]
 fn it_is_an_object() {
     let result = parse(TEST_DCC);
-    assert_eq!(result.data().is_object(), true);
+    assert_eq!(result.data.is_object(), true);
 }
 
 #[wasm_bindgen_test]
 fn it_contains_props() {
     let result = parse(TEST_DCC);
-    let json: Value = result.data().into_serde().unwrap();
+    let json: Value = result.data.into_serde().unwrap();
     assert_eq!(json["1"], String::from("DE"))
 }
 
 #[wasm_bindgen_test]
 fn it_is_valid() {
-    assert_eq!(parse(TEST_DCC).is_successful(), true)
+    assert_eq!(parse(TEST_DCC).successful, true)
 }
 
 #[wasm_bindgen_test]
 fn invalid_dcc_returns_false() {
-    assert_eq!(parse("some_invalid_data").is_successful(), false)
+    assert_eq!(parse("some_invalid_data").successful, false)
 }
 
 #[wasm_bindgen_test]
 fn invalid_dcc_returns_error_msg() {
-    assert!(parse("some_invalid_data").error().len() > 0)
+    assert!(parse("some_invalid_data").error.len() > 0)
 }
 
 #[wasm_bindgen_test]
 fn it_ignores_the_header() {
-    assert!(parse(&format!("HC1:{}", TEST_DCC)).is_successful())
+    assert!(parse(&format!("HC1:{}", TEST_DCC)).successful)
 }
 
 #[wasm_bindgen_test]
 fn it_verifies_sig() {
-    let result = verify_signature(
-        TEST_DCC,
-        "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");
+    let result = parse(TEST_DCC);
     assert!(result.successful)
 }
